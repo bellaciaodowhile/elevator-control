@@ -28,7 +28,7 @@ export const getPendingItems = (siteId, date) => {
     data.maintenanceRecords
       .filter(record => {
         const recordDate = new Date(record.date);
-        return record.siteId === siteId && 
+        return record.siteId == siteId && 
                recordDate.getDate() === targetDate.getDate() &&
                recordDate.getMonth() === targetDate.getMonth() &&
                recordDate.getFullYear() === targetDate.getFullYear();
@@ -49,7 +49,7 @@ export const getAvailableMaintenanceItems = (siteId) => {
   // Get all maintenance records for the selected site in the current month
   const currentMonthRecords = data.maintenanceRecords.filter(record => {
     const recordDate = new Date(record.date);
-    return record.siteId === siteId && 
+    return record.siteId == siteId && 
            recordDate.getMonth() === currentMonth &&
            recordDate.getFullYear() === currentYear;
   });
@@ -90,7 +90,7 @@ export const searchMaintenanceRecords = (query) => {
   const searchTerm = query.toLowerCase();
   
   return data.maintenanceRecords.filter(record => {
-    const site = data.sites.find(s => s.id === record.siteId);
+    const site = data.sites.find(s => s.id == record.siteId);
     const items = data.maintenanceItems.filter(item => record.items.includes(item.id));
     
     // Search in site name
